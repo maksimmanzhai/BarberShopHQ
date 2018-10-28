@@ -4,24 +4,47 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sinatra/activerecord'
 
-set :database, "sqlite3:barbershop.db"
+set :database, "sqlite3:barbershop.db" #1. greate database
 
-class Client < ActiveRecord::Base
+class Client < ActiveRecord::Base #2. greate model
 end
 
-class Barber < ActiveRecord::Base
+#3. rake db:create_migration NAME=name_of_migration
+
+class Barber < ActiveRecord::Base #model
+end
+
+class Shop < ActiveRecord::Base #model
+end
+
+before do
+	@barbers = Barber.all
 end
 
 get '/' do
-	@barbers = Barber.all
 	erb :index
 end
 
 get '/visit' do
-	@barbers = Barber.all
 	erb :visit
 end
 
 post '/visit' do
+	@username = params[:username]
+	@phone = params[:phone]
+	@datetime = params[:datetime]
+	@barber = params[:barber]
+	@color = params[:color]
 	
+	# name, phone, datestamp, barber, color
+
+	c = Client.new
+	c.name = @username
+	c.phone = @phone
+	c.datestamp = @datetime
+	c.barber = @barber
+	c.color = @color
+	c.save
+
+	erb "<h2>Thanx, for you choice!</h2>"
 end
