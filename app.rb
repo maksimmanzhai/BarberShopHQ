@@ -7,6 +7,10 @@ require 'sinatra/activerecord'
 set :database, "sqlite3:barbershop.db" #1. greate database
 
 class Client < ActiveRecord::Base #2. greate model
+	validates :name, presence: true
+	validates :phone, presence: true
+	validates :datestamp, presence: true
+	validates :color, presence: true
 end
 
 #3. rake db:create_migration NAME=name_of_migration
@@ -30,20 +34,7 @@ get '/visit' do
 end
 
 post '/visit' do
-	@username = params[:username]
-	@phone = params[:phone]
-	@datetime = params[:datetime]
-	@barber = params[:barber]
-	@color = params[:color]
-	
-	# name, phone, datestamp, barber, color
-
-	c = Client.new
-	c.name = @username
-	c.phone = @phone
-	c.datestamp = @datetime
-	c.barber = @barber
-	c.color = @color
+	c = Client.new params[:client]
 	c.save
 
 	erb "<h2>Thanx, for you choice!</h2>"

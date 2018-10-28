@@ -13,22 +13,17 @@
 	
 	<div class="form-group">
 		<label>Ваше имя</label>
-		<input type="text" name="username" class="form-control" placeholder="Ваше имя" value="<%= @username %>">
+		<input type="text" name="client[name]" class="form-control" placeholder="Ваше имя" value="">
   </div>
 
 	<div class="form-group">
 		<label>Ваше телефон</label>
-		<input 
-			type="text" 
-			name="phone" 
-			class="form-control" 
-			placeholder="Ваш телефон" 
-			value="<%= @phone %>">
+		<input type="text" name="client[phone]" class="form-control" placeholder="Ваш телефон" value="">
   </div>
 
   <div class="form-group">
 		<label>Ваше время</label>
-		<input id="datetimepicker1" type="text" name="datetime" class="form-control" placeholder="Ваше время" value="<%= @datetime %>">
+		<input id="datetimepicker1" type="text" name="client[datestamp]" class="form-control" placeholder="Ваше время" value="">
   </div>
 
 	<div class="form-group">
@@ -45,7 +40,7 @@
 
 	<div class="form-group">
 		<label>Желаемый цвет:</label>
-		<select name="color" id="color">
+		<select name="client[color]" id="color">
 		  <option value="#7bd148">Green</option>
 		  <option value="#5484ed">Bold blue</option>
 		  <option value="#a4bdfc">Blue</option>
