@@ -7,7 +7,7 @@ require 'sinatra/activerecord'
 set :database, "sqlite3:barbershop.db" #1. greate database
 
 class Client < ActiveRecord::Base #2. greate model
-	validates :name, presence: true
+	validates :name, presence: true, length: { minimum: 3 }
 	validates :phone, presence: true
 	validates :datestamp, presence: true
 	validates :color, presence: true
