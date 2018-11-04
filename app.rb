@@ -35,13 +35,16 @@ get '/visit' do
 end
 
 post '/visit' do
-	@c = Client.new params[:client]
-	
+	@c = Client.new params[:client]	
 	if @c.save
 		erb "<h2>Thanx, for you choice!</h2>"
 	else 
 		@error = @c.errors.full_messages.first
 		erb :visit
 	end
+end
 
+get '/bookings' do
+	@clients = Client.order('created_at DESC')
+	erb :bookings
 end
